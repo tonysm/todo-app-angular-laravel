@@ -1,6 +1,7 @@
 angular.module("todoApp").controller("TodosController", function($scope, Todo) {
     $scope.newTodo = "";
     $scope.todos = [];
+    $scope.completedTodos = [];
 
     Todo.query(function(data){
         $scope.todos = data;
@@ -20,10 +21,15 @@ angular.module("todoApp").controller("TodosController", function($scope, Todo) {
                 if ($scope.todos[i].id == todo.id)
                 {
                     $scope.todos.splice(i, 1);
+                    $scope.completedTodos.push(todo);
                     break;
                 }
             }
         });
+    };
+
+    $scope.hasCompletedTodos = function() {
+        return $scope.completedTodos.length > 0;
     };
 
     $scope.hasTodos = function(){

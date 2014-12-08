@@ -1,0 +1,18 @@
+.todos {
+  li {
+    font-size: 18px;
+    padding: 5px;
+    list-style: none;
+  }
+}
+
+.done-items {
+  li {
+    color: #000;
+    text-decoration:line-through;
+  }
+
+  .not-done {
+    text-decoration:none;
+  }
+}
