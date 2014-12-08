@@ -38079,31 +38079,43 @@ angular.module('ngResource', ['ng']).
 
 })(window, window.angular);
 
-angular.module("todoApp", ['ngResource'])
+angular.module("todoApp", ['ngResource']);
+angular.module("todoApp")
     .factory('Todo', function($resource) {
         return $resource('/api/v1/todos/:id');
-    })
-    .controller("TodosController", function($scope, Todo) {
-        $scope.newTodo = "";
-        $scope.todos = [];
-
-        function updateTodosList()
-        {
-            Todo.query(function(data){
-                $scope.todos = data;
-            });
-        }
-
-        updateTodosList();
-
-        $scope.addTodo = function(newTodo) {
-            Todo.save({name: newTodo}, function(data) {
-                $scope.todos.push(data);
-                $scope.newTodo = "";
-            });
-        };
-
-        $scope.hasTodos = function(){
-            return $scope.todos.length > 0;
-        };
     });
+var app = angular.module("todoApp");
+
+app.controller("TodosController", function($scope, Todo) {
+    $scope.newTodo = "";
+    $scope.todos = [];
+
+    Todo.query(function(data){
+        $scope.todos = data;
+    });
+
+    $scope.addTodo = function(newTodo) {
+        Todo.save({name: newTodo}, function(todo) {
+            $scope.todos.unshift(todo);
+            $scope.newTodo = "";
+        });
+    };
+
+    $scope.deleteTodo = function(todo){
+        Todo.delete(todo, function(todo) {
+            for (var i = 0; i < $scope.todos.length; i++)
+            {
+                if ($scope.todos[i].id == todo.id)
+                {
+                    $scope.todos.splice(i, 1);
+                    $scope.todos.push(todo);
+                    break;
+                }
+            }
+        });
+    };
+
+    $scope.hasTodos = function(){
+        return $scope.todos.length > 0;
+    };
+});

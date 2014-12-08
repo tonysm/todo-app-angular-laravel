@@ -46,7 +46,9 @@ elixir(function(mix) {
             "public/js/vendor/bootstrap.js",
             "public/js/vendor/angular.js",
             "public/js/vendor/angular-resource.js",
-            "public/js/angular/app.js"
+            "public/js/angular/app.js",
+            "public/js/angular/resources/Todo.js",
+            "public/js/angular/controllers/TodosController.js"
         ])
         .styles([
             "public/css/app.css",
