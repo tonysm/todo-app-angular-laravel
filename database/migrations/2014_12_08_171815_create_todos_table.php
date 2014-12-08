@@ -16,8 +16,6 @@ class CreateTodosTable extends Migration {
         {
             $table->increments("id");
             $table->string("name");
-
-            $table->timestamp("completed_at")->nullable();
             $table->timestamps();
         });
 	}

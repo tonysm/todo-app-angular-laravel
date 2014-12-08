@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Todo extends Model
 {
@@ -13,8 +14,6 @@ class Todo extends Model
         "name" => "required|min:3"
     ];
 
-    private $transformer = "App\\Todos\\TodoTransformer";
-
     /**
      * @var array
      */
@@ -24,12 +23,4 @@ class Todo extends Model
      * @var array
      */
     protected $dates = ["completed_at"];
-
-    /**
-     * @return string
-     */
-    public function getTransformer()
-    {
-        return $this->transformer;
-    }
 } 

@@ -16,7 +16,7 @@ class TodosController extends Controller {
      */
 	public function index()
 	{
-        $todos = Todo::orderBy("completed_at", "ASC")->get();
+        $todos = Todo::all();
 
         return $todos;
 	}
@@ -53,8 +53,7 @@ class TodosController extends Controller {
 	{
 		$todo = Todo::find($id);
 
-        $todo->completed_at = Carbon::now();
-        $todo->save();
+        $todo->delete();
 
         return Response::make($todo, 200);
 	}

@@ -1,6 +1,4 @@
-var app = angular.module("todoApp");
-
-app.controller("TodosController", function($scope, Todo) {
+angular.module("todoApp").controller("TodosController", function($scope, Todo) {
     $scope.newTodo = "";
     $scope.todos = [];
 
@@ -22,7 +20,6 @@ app.controller("TodosController", function($scope, Todo) {
                 if ($scope.todos[i].id == todo.id)
                 {
                     $scope.todos.splice(i, 1);
-                    $scope.todos.push(todo);
                     break;
                 }
             }
