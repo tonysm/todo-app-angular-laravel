@@ -14,7 +14,7 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.sass('app.scss')
        .publish(
-            'jquery/dist/jquery.min.js',
+            'jquery/dist/jquery.js',
             'public/js/vendor/jquery.js'
         )
        .publish(
@@ -28,5 +28,19 @@ elixir(function(mix) {
        .publish(
             'font-awesome/fonts',
             'public/css/fonts'
-        );
+        )
+        .publish(
+            'angular/angular.js',
+            'public/js/vendor/angular.js'
+        )
+        .scripts([
+            "public/js/vendor/jquery.js",
+            "public/js/vendor/bootstrap.js",
+            "public/js/vendor/angular.js"
+        ])
+        .styles([
+            "public/css/app.css",
+            "public/css/vendor/font-awesome"
+        ])
+        .version("public/css/all.css");
 });

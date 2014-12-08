@@ -8,11 +8,10 @@
 	<meta name="author" content="">
 
 	<!-- Application Title -->
-	<title>Laravel Application</title>
+	<title>Todo App</title>
 
 	<!-- Bootstrap CSS -->
-	<link href="/css/app.css" rel="stylesheet">
-	<link href="/css/vendor/font-awesome.css" rel="stylesheet">
+	<link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 
 	<!-- Web Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -34,32 +33,13 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">Laravel</a>
+				<a class="navbar-brand" href="/">Todo App</a>
 			</div>
 
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/">Home</a></li>
 				</ul>
-
-				@if (Auth::check())
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                				<img src="https://www.gravatar.com/avatar/{{{ md5(strtolower(Auth::user()->email)) }}}?s=35" height="35" width="35" class="navbar-avatar">
-								{{ Auth::user()->name }} <b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="/auth/logout"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-							</ul>
-						</li>
-					</ul>
-				@else
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/auth/login"><i class="fa fa-btn fa-sign-in"></i>Login</a></li>
-						<li><a href="/auth/register"><i class="fa fa-btn fa-user"></i>Register</a></li>
-					</ul>
-				@endif
 			</div>
 		</div>
 	</nav>
@@ -67,7 +47,6 @@
 	@yield('content')
 
 	<!-- Bootstrap JavaScript -->
-	<script src="/js/vendor/jquery.js"></script>
-	<script src="/js/vendor/bootstrap.js"></script>
+	<script src="/js/all.js"></script>
 </body>
 </html>
