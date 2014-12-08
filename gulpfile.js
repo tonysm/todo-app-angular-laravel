@@ -14,6 +14,10 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.sass('app.scss')
        .publish(
+            '../../assets/js/angular',
+            'public/js/angular'
+        )
+       .publish(
             'jquery/dist/jquery.js',
             'public/js/vendor/jquery.js'
         )
@@ -33,10 +37,16 @@ elixir(function(mix) {
             'angular/angular.js',
             'public/js/vendor/angular.js'
         )
+        .publish(
+            'angular-resource/angular-resource.js',
+            'public/js/vendor/angular-resource.js'
+        )
         .scripts([
             "public/js/vendor/jquery.js",
             "public/js/vendor/bootstrap.js",
-            "public/js/vendor/angular.js"
+            "public/js/vendor/angular.js",
+            "public/js/vendor/angular-resource.js",
+            "public/js/angular/app.js"
         ])
         .styles([
             "public/css/app.css",

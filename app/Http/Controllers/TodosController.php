@@ -8,14 +8,17 @@ use Illuminate\Support\Facades\Validator;
 
 class TodosController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return Response
+     */
+	public function index(Request $request)
 	{
-		//
+        $todos = Todo::all();
+
+        return $todos;
 	}
 
     /**
@@ -37,7 +40,7 @@ class TodosController extends Controller {
 
         $todo = Todo::create(["name" => $todo_name]);
 
-        return Response::make($this->newResource($todo), 201);
+        return Response::make($todo, 201);
 	}
 
 	/**
@@ -83,5 +86,4 @@ class TodosController extends Controller {
 	{
 		//
 	}
-
 }

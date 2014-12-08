@@ -3,6 +3,8 @@
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use League\Fractal\Manager;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 
 abstract class Controller extends BaseController {
@@ -13,7 +15,7 @@ abstract class Controller extends BaseController {
      * @param $resource
      * @return Item
      */
-    public function newResource($resource)
+    protected function newResource($resource)
     {
         // Create a top level instance somewhere
         $fractal = new Manager();
@@ -22,6 +24,22 @@ abstract class Controller extends BaseController {
         $item = new Item($resource, new $transformer);
 
         return $fractal->createData($item)->toJson();
+    }
+
+    /**
+     * @param $paginator
+     * @param $transformer
+     * @return string
+     */
+    protected function resources($paginator, $transformer)
+    {
+        $fractal = new Manager();
+        $collection = $paginator->items();
+
+        $resource = new Collection($collection, $transformer);
+        $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
+
+        return $fractal->createData($resource)->toJson();
     }
 
 }
